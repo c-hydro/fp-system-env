@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.0.9"
-script_date='2019/09/18'
+script_version="1.0.10"
+script_date='2019/10/31'
 
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh'
 
@@ -48,6 +48,7 @@ pip install pytesmo
 pip install repurpose
 pip install jupyter
 pip install JPype1-py3
+conda install -c conda-forge rise
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # ----------------------------------------------------------------------------------------
 
