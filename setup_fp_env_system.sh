@@ -27,7 +27,7 @@ fileref_env='fp_env_system'
 
 # Get folder root path
 if [ $# -eq 0 ]; then
-    fp_folder_root=$HOME
+    fp_folder_root=$HOME/fp_libs_system
 else
 	fp_folder_root=$1
 	if [ ! -d "$fp_folder_root" ]; then
@@ -36,7 +36,7 @@ else
 fi
 
 # Define folder(s)
-fp_folder_libs=$fp_folder_root/fp_libs_system
+fp_folder_libs=$fp_folder_root
 fp_folder_source=$fp_folder_libs/source
 
 fp_folder_zlib=$fp_folder_libs/zlib
