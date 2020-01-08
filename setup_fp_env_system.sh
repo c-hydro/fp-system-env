@@ -1,6 +1,5 @@
 #!/bin/bash -e
 
-
 #-----------------------------------------------------------------------------------------
 # NOTE:
 # Extra libraries (for preparing machine to install zip, hdf5 and netcdf libraries)
@@ -15,8 +14,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.0.3"
-script_date='2019/06/25'
+script_version="1.1.0"
+script_date='2020/01/08'
 
 # Define file reference path according with https link(s)
 fileref_zlib='http://www.zlib.net/zlib-1.2.11.tar.gz'
@@ -26,8 +25,18 @@ fileref_nc4_fortran='https://github.com/Unidata/netcdf-fortran/archive/v4.4.2.ta
 
 fileref_env='fp_env_system'
 
+# Get folder root path
+if [ $# -eq 0 ]; then
+    fp_folder_root=$HOME
+else
+	fp_folder_root=$1
+	if [ ! -d "$fp_folder_root" ]; then
+		mkdir -p $fp_folder_root
+	fi
+fi
+
 # Define folder(s)
-fp_folder_libs=$HOME/fp_libs_system
+fp_folder_libs=$fp_folder_root/fp_libs_system
 fp_folder_source=$fp_folder_libs/source
 
 fp_folder_zlib=$fp_folder_libs/zlib
