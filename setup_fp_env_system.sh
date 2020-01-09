@@ -14,8 +14,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.1.0"
-script_date='2020/01/08'
+script_version="1.1.1"
+script_date='2020/01/09'
 
 # Define file reference path according with https link(s)
 fileref_zlib='http://www.zlib.net/zlib-1.2.11.tar.gz'
@@ -186,11 +186,11 @@ if [ -f $fp_file_env ] ; then
 fi
 
 # Export LIBRARY PATH(S)
-echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$fp_folder_zlib/lib/:$fp_folder_hdf5/lib/:$fp_folder_nc4_c/lib/:$fp_folder_nc4_fortran/lib/" >> $fp_file_env
+echo "LD_LIBRARY_PATH="'$LD_LIBRARY_PATH'":$fp_folder_zlib/lib/:$fp_folder_hdf5/lib/:$fp_folder_nc4_c/lib/:$fp_folder_nc4_fortran/lib/" >> $fp_file_env
 echo "export LD_LIBRARY_PATH" >> $fp_file_env
 
 # Export BINARY PATH()
-echo "PATH=$fp_folder_zlib/bin:$fp_folder_hdf5/bin:$fp_folder_nc4_c/bin:$fp_folder_nc4_fortran/bin:$PATH" >> $fp_file_env
+echo "PATH=$fp_folder_zlib/bin:$fp_folder_hdf5/bin:$fp_folder_nc4_c/bin:$fp_folder_nc4_fortran/bin:"'$PATH'"" >> $fp_file_env
 echo "export PATH" >> $fp_file_env
 
 echo " ====> CREATE ENVIRONMENTAL FILE ... DONE!"
