@@ -189,7 +189,7 @@ fi
 echo "LD_LIBRARY_PATH="'$LD_LIBRARY_PATH'":$fp_folder_zlib/lib/:$fp_folder_hdf5/lib/:$fp_folder_nc4_c/lib/:$fp_folder_nc4_fortran/lib/" >> $fp_file_env
 echo "export LD_LIBRARY_PATH" >> $fp_file_env
 
-# Export BINARY PATH()
+# Export BINARY PATH(S)
 echo "PATH=$fp_folder_zlib/bin:$fp_folder_hdf5/bin:$fp_folder_nc4_c/bin:$fp_folder_nc4_fortran/bin:"'$PATH'"" >> $fp_file_env
 echo "export PATH" >> $fp_file_env
 

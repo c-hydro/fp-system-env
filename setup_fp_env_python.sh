@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.1.0"
+script_version="1.1.1"
 script_date='2020/01/09'
 
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh'
@@ -19,7 +19,11 @@ else
 fi
 
 fp_folder_libs=$fp_folder_root
-fp_env_libs='fp_env_python3'
+
+fp_env_libs='virtualenv_python3'
+fileref_env='fp_env_python3'
+
+fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi
 #-----------------------------------------------------------------------------------------
@@ -41,7 +45,7 @@ echo " ====> GET LIBRARY FILES ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python environmente using miniconda
 echo " ====> INSTALL PYTHON ENVIRONMENT ... "
-bash miniconda.sh -b -p $fp_folder_libs
+bash miniconda.sh -b -p -u $fp_folder_libs
 export PATH="$fp_folder_libs/bin:$PATH"
 echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
@@ -62,6 +66,28 @@ pip install JPype1-py3
 conda install -c conda-forge rise
 conda install -c conda-forge nbconvert
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
+
+# ----------------------------------------------------------------------------------------
+# Create environmental file
+echo " ====> CREATE ENVIRONMENTAL FILE ... "
+
+# Delete old version of environmetal file
+cd $fp_folder_libs
+
+if [ -f $fp_file_env ] ; then
+    rm $fp_file_env
+fi
+
+# Export BINARY PATH(S)
+echo "PATH=$fp_folder_libs/bin:"'$PATH'""
+echo "export PATH" >> $fp_file_env
+
+# Export VENV ACTIVATION
+echo "source activate $fp_env_libs" >> $fp_file_env
+
+echo " ====> CREATE ENVIRONMENTAL FILE ... DONE!"
+# ----------------------------------------------------------------------------------------
+
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
