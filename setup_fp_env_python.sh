@@ -45,7 +45,12 @@ echo " ====> GET LIBRARY FILES ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python environmente using miniconda
 echo " ====> INSTALL PYTHON ENVIRONMENT ... "
-bash miniconda.sh -b -p -u $fp_folder_libs
+
+if [ -d "$fp_folder_libs" ]; then 
+	rm -Rf $fp_folder_libs; 
+fi
+
+bash miniconda.sh -b -p $fp_folder_libs
 export PATH="$fp_folder_libs/bin:$PATH"
 echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
@@ -53,7 +58,7 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip python=3
+conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip python=3
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
