@@ -58,7 +58,7 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip python=3
+conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip rise nbconvert python=3
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
@@ -68,9 +68,10 @@ pip install repurpose
 pip install jupyter
 pip install pynetcf
 pip install JPype1-py3
-conda install -c conda-forge rise
-conda install -c conda-forge nbconvert
+# conda install -y -c conda-forge rise
+# conda install -y -c conda-forge nbconvert
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
+# ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
 # Create environmental file
@@ -84,7 +85,7 @@ if [ -f $fp_file_env ] ; then
 fi
 
 # Export BINARY PATH(S)
-echo "PATH=$fp_folder_libs/bin:"'$PATH'""
+echo "PATH=$fp_folder_libs/bin:"'$PATH'"" >> $fp_file_env
 echo "export PATH" >> $fp_file_env
 
 # Export VENV ACTIVATION
