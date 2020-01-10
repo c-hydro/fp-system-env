@@ -14,8 +14,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.1.1"
-script_date='2020/01/09'
+script_version="1.1.2"
+script_date='2020/01/10'
 
 # Define file reference path according with https link(s)
 fileref_zlib='http://www.zlib.net/zlib-1.2.11.tar.gz'
@@ -23,19 +23,28 @@ fileref_hdf5='https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.1
 fileref_nc4_c='https://github.com/Unidata/netcdf-c/archive/v4.6.0.tar.gz'
 fileref_nc4_fortran='https://github.com/Unidata/netcdf-fortran/archive/v4.4.2.tar.gz'
 
-fileref_env='fp_env_system'
+# Argument(s) default definition(s)
+fp_folder_root_default=$HOME/fp_libs_system
+fileref_env_default='fp_env_system'
 
 # Get folder root path
 if [ $# -eq 0 ]; then
-    fp_folder_root=$HOME/fp_libs_system
-else
+    fp_folder_root=$fp_folder_root_default
+	fileref_env=$fileref_env_default
+elif [ $# -eq 1 ]; then
 	fp_folder_root=$1
-	if [ ! -d "$fp_folder_root" ]; then
-		mkdir -p $fp_folder_root
-	fi
+	fileref_env=$fileref_env_default
+elif [ $# -eq 2 ]; then
+	fp_folder_root=$1
+	fileref_env=$2
 fi
 
-# Define folder(s)
+# Create root folder
+if [ ! -d "$fp_folder_root" ]; then
+	mkdir -p $fp_folder_root
+fi
+
+# Define folder path(s)
 fp_folder_libs=$fp_folder_root
 fp_folder_source=$fp_folder_libs/source
 
@@ -44,6 +53,7 @@ fp_folder_hdf5=$fp_folder_libs/hdf5
 fp_folder_nc4_c=$fp_folder_libs/nc4
 fp_folder_nc4_fortran=$fp_folder_libs/nc4
 
+# Define environment filename
 fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi

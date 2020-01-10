@@ -3,26 +3,45 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.1.1"
-script_date='2020/01/09'
+script_version="1.5.1"
+script_date='2020/01/10'
 
+# Define file reference path according with https link(s)
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh'
+
+# Argument(s) default definition(s)
+fp_folder_root_default=$HOME/fp_libs_python3
+fileref_env_default='fp_env_python3'
+fp_env_libs_default='virtualenv_python3'
 
 # Get folder root path
 if [ $# -eq 0 ]; then
-    fp_folder_root=$HOME/fp_libs_python3
-else
+    fp_folder_root=$fp_folder_root_default	
+	fp_env_libs=$fp_env_libs_default
+	fileref_env=$fileref_env_default
+elif [ $# -eq 1 ]; then
 	fp_folder_root=$1
-	if [ ! -d "$fp_folder_root" ]; then
-		mkdir -p $fp_folder_root
-	fi
+	fp_env_libs=$fp_env_libs_default
+	fileref_env=$fileref_env_default
+elif [ $# -eq 2 ]; then
+	fp_folder_root=$1
+	fp_env_libs=$2
+	fileref_env=$fileref_env_default
+elif [ $# -eq 3 ]; then
+	fp_folder_root=$1
+	fp_env_libs=$2
+	fileref_env=$3
 fi
 
+# Create root folder
+if [ ! -d "$fp_folder_root" ]; then
+	mkdir -p $fp_folder_root
+fi
+
+# Define folder path(s)
 fp_folder_libs=$fp_folder_root
 
-fp_env_libs='virtualenv_python3'
-fileref_env='fp_env_python3'
-
+# Define environment filename
 fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi

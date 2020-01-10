@@ -3,17 +3,38 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - HMC LIBRARIES'
-script_version="1.0.1"
-script_date='2018/11/26'
+script_version="1.5.0"
+script_date='2020/01/10'
 
 # Define file reference path according with https link(s)
-fileref_model_archive='https://github.com/c-hydro/hmc/raw/master/hmc-2.0.7.tar.gz'
-fileref_env='fp_env_system'
+fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-2.0.7.tar.gz'
+fileref_model_archive_local='hmc.tar.gz'
+
+# Argument(s) default definition(s)
+fileref_env_default='fp_env_system'
+fp_folder_libs_default=$HOME/fp_libs_system
+
+# Set argument(s)
+if [ $# -eq 0 ]; then
+	fp_folder_libs=$fp_folder_libs_default
+	fileref_env=$fileref_env_default
+elif [ $# -eq 1 ]; then
+	fp_folder_libs=$1
+	fileref_env=$fileref_env_default
+elif [ $# -eq 2 ]; then
+	fp_folder_libs=$1
+	fileref_env=$2
+fi
+
+# Create library folder
+if [ ! -d "$fp_folder_libs" ]; then
+	mkdir -p $fp_folder_libs
+fi
 
 # Define folder(s)
-fp_folder_libs=$HOME/fp_libs_system
 fp_folder_source=$fp_folder_libs/source
-
+fp_folder_exec=$fp_folder_libs/hmc
+# Define environment filename
 fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi
@@ -40,7 +61,7 @@ fi
 # Download library source codes
 echo " ====> GET LIBRARY FILES ... "
 cd $fp_folder_source
-wget --no-check-certificate --content-disposition $fileref_model_archive -O hmc.tar.gz
+wget --no-check-certificate --content-disposition $fileref_model_archive_remote -O $fileref_model_archive_local
 echo " ====> GET LIBRARY FILES ... DONE!"
 # ----------------------------------------------------------------------------------------
 
@@ -59,8 +80,8 @@ tar xvfz hmc.tar.gz -C $fp_folder_source_hmc --strip-components=1
 cd $fp_folder_source_hmc
 
 source $fp_file_env
-chmod +x configure.sh
-./configure.sh
+chmod +x configure.sh l
+./configure.sh $fileref_model_archive_local $fp_folder_libs $fp_folder_exec true
 
 echo " ====> COMPILE HMC MODEL ... DONE!"
 # ----------------------------------------------------------------------------------------
