@@ -13,6 +13,26 @@ fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x
 fp_folder_root_default=$HOME/fp_libs_python3
 fileref_env_default='fp_env_python3'
 fp_env_libs_default='virtualenv_python3'
+#-----------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------
+# Info script start
+echo " ==================================================================================="
+echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
+echo " ==> START ..."
+
+# Get arguments number and values
+script_args_n=$#
+script_args_values=$@
+
+echo ""
+echo " ==> Script arguments number: $script_args_n"
+echo " ==> Script arguments values: $script_args_values"
+echo ""
+echo " ==> Script arguments 1 - Directory of libraries [string: path]-> $1"
+echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
+echo " ==> Script arguments 3 - Name of virtual environment [string: name] -> $3"
+echo ""
 
 # Get folder root path
 if [ $# -eq 0 ]; then
@@ -46,13 +66,6 @@ fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi
 #-----------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------------
-# Info script start
-echo " ==================================================================================="
-echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
-echo " ==> START ..."
-# ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
 # Download library source codes

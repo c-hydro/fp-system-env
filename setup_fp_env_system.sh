@@ -14,7 +14,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.1.2"
+script_version="1.5.1"
 script_date='2020/01/10'
 
 # Define file reference path according with https link(s)
@@ -26,6 +26,25 @@ fileref_nc4_fortran='https://github.com/Unidata/netcdf-fortran/archive/v4.4.2.ta
 # Argument(s) default definition(s)
 fp_folder_root_default=$HOME/fp_libs_system
 fileref_env_default='fp_env_system'
+# ----------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------
+# Info script start
+echo " ==================================================================================="
+echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
+echo " ==> START ..."
+
+# Get arguments number and values
+script_args_n=$#
+script_args_values=$@
+
+echo ""
+echo " ==> Script arguments number: $script_args_n"
+echo " ==> Script arguments values: $script_args_values"
+echo ""
+echo " ==> Script arguments 1 - Directory of libraries [string: path]-> $1"
+echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
+echo ""
 
 # Get folder root path
 if [ $# -eq 0 ]; then
@@ -56,17 +75,6 @@ fp_folder_nc4_fortran=$fp_folder_libs/nc4
 # Define environment filename
 fp_file_env=$fp_folder_libs/$fileref_env
 
-# multilines comment: if [ 1 -eq 0 ]; then ... fi
-# ----------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------------
-# Info script start
-echo " ==================================================================================="
-echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
-echo " ==> START ..."
-# ----------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------------
 # Create folder(s)
 if [ ! -d "$fp_folder_libs" ]; then
 	mkdir -p $fp_folder_libs
@@ -74,6 +82,8 @@ fi
 if [ ! -d "$fp_folder_source" ]; then
 	mkdir -p $fp_folder_source
 fi
+
+# multilines comment: if [ 1 -eq 0 ]; then ... fi
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - HMC LIBRARIES'
-script_version="1.5.0"
+script_version="1.5.1"
 script_date='2020/01/10'
 
 # Define file reference path according with https link(s)
@@ -13,6 +13,25 @@ fileref_model_archive_local='hmc.tar.gz'
 # Argument(s) default definition(s)
 fileref_env_default='fp_env_system'
 fp_folder_libs_default=$HOME/fp_libs_system
+# ----------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------
+# Info script start
+echo " ==================================================================================="
+echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
+echo " ==> START ..."
+
+# Get arguments number and values
+script_args_n=$#
+script_args_values=$@
+
+echo ""
+echo " ==> Script arguments number: $script_args_n"
+echo " ==> Script arguments values: $script_args_values"
+echo ""
+echo " ==> Script arguments 1 - Directory of dependecies [string: path]-> $1"
+echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
+echo ""
 
 # Set argument(s)
 if [ $# -eq 0 ]; then
@@ -38,13 +57,6 @@ fp_folder_exec=$fp_folder_libs/hmc
 fp_file_env=$fp_folder_libs/$fileref_env
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi
-# ----------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------------
-# Info script start
-echo " ==================================================================================="
-echo " ==> "$script_name" (Version: "$script_version" Release_Date: "$script_date")"
-echo " ==> START ..."
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -80,7 +92,7 @@ tar xvfz hmc.tar.gz -C $fp_folder_source_hmc --strip-components=1
 cd $fp_folder_source_hmc
 
 source $fp_file_env
-chmod +x configure.sh l
+chmod +x configure.sh
 ./configure.sh $fileref_model_archive_local $fp_folder_libs $fp_folder_exec true
 
 echo " ====> COMPILE HMC MODEL ... DONE!"
