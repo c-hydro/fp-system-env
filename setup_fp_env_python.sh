@@ -36,21 +36,21 @@ echo ""
 
 # Get folder root path
 if [ $# -eq 0 ]; then
-    fp_folder_root=$fp_folder_root_default	
-	fp_env_libs=$fp_env_libs_default
+    fp_folder_root=$fp_folder_root_default		
 	fileref_env=$fileref_env_default
+	fp_env_libs=$fp_env_libs_default
 elif [ $# -eq 1 ]; then
-	fp_folder_root=$1
-	fp_env_libs=$fp_env_libs_default
+	fp_folder_root=$1	
 	fileref_env=$fileref_env_default
+	fp_env_libs=$fp_env_libs_default
 elif [ $# -eq 2 ]; then
 	fp_folder_root=$1
-	fp_env_libs=$2
-	fileref_env=$fileref_env_default
+	fileref_env=$2
+	fp_env_libs=$fp_env_libs_default
 elif [ $# -eq 3 ]; then
 	fp_folder_root=$1
-	fp_env_libs=$2
-	fileref_env=$3
+	fileref_env=$2
+	fp_env_libs=$3
 fi
 
 # Create root folder
