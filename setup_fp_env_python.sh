@@ -3,11 +3,11 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.5.1"
-script_date='2020/01/10'
+script_version="1.5.2"
+script_date='2020/03/19'
 
 # Define file reference path according with https link(s)
-fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.5.11-Linux-x86_64.sh'
+fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
 fp_folder_root_default=$HOME/fp_libs_python3
@@ -90,16 +90,16 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip rise nbconvert python=3
+conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cartopy basemap basemap-data-hires proj4 progressbar2 xarray pygeobase dask pip python=3
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
 pip install ascat
 pip install pytesmo
 pip install repurpose
-pip install jupyter
 pip install pynetcf
 pip install JPype1-py3
+conda install -y -c conda-forge cdo
 # conda install -y -c conda-forge rise
 # conda install -y -c conda-forge nbconvert
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
