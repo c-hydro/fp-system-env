@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - HMC LIBRARIES'
-script_version="1.5.1"
+script_version="1.5.2"
 script_date='2020/01/10'
 
 # Define file reference path according with https link(s)
