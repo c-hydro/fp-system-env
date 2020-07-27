@@ -3,11 +3,11 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - HMC LIBRARIES'
-script_version="1.5.5"
-script_date='2020/06/05'
+script_version="1.5.6"
+script_date='2020/07/23'
 
 # Define file reference path according with https link(s)
-fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-2.0.7.tar.gz'
+fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.2.tar.gz'
 fileref_model_archive_local='hmc.tar.gz'
 
 # Argument(s) default definition(s)
