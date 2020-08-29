@@ -8,8 +8,12 @@ script_date='2020/07/23'
 
 # Define file reference path according with https link(s)
 <<<<<<< HEAD
+<<<<<<< HEAD
 #fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-2.0.7.tar.gz'
 fileref_model_archive_remote='https://raw.githubusercontent.com/c-hydro/hmc-lib/v2.0.7/hmc-2.0.7.tar.gz'
+=======
+fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.2.tar.gz'
+>>>>>>> f7b1cf160f4f4a65a512d7faae5dec5b4bed2c96
 =======
 fileref_model_archive_remote='https://github.com/c-hydro/hmc-lib/raw/master/hmc-3.1.2.tar.gz'
 >>>>>>> f7b1cf160f4f4a65a512d7faae5dec5b4bed2c96
