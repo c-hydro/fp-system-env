@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - HMC LIBRARIES'
-script_version="1.5.6"
+script_version="1.5.3"
 script_date='2020/07/23'
 
 # Define file reference path according with https link(s)
@@ -78,7 +78,7 @@ echo " ====> GET LIBRARY FILES ... DONE!"
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
-# Install ZLIB library
+# Compite HMC model
 echo " ====> COMPILE HMC MODEL ... "
 
 cd $fp_folder_source

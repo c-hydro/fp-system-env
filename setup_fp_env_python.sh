@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.5.6"
+script_version="1.5.3"
 script_date='2020/07/23'
 
 # Define file reference path according with https link(s)
