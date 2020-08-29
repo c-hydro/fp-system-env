@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.5.3"
-script_date='2020/07/23'
+script_version="1.5.7"
+script_date='2020/08/13'
 
 # Define file reference path according with https link(s)
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh'
@@ -90,7 +90,7 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip pygrib ftputil seaborn python=3
+conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip pygrib ftputil seaborn pytest GitPython python=3
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf

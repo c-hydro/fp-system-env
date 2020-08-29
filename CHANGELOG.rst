@@ -2,6 +2,16 @@
 Changelog
 =========
 
+Version 1.5.7 [2020-08-13]
+**************************
+ADD: **setup_fp_env_python.sh**
+	- Add **pytest** library for testing scripts and procedures
+
+Version 1.5.6 [2020-07-23]
+**************************
+ADD: **setup_fp_env_hmc.sh**
+	- HMC version 3.1.2
+
 Version 1.5.5 [2020-06-05]
 **************************
 ADD: **setup_fp_env_python.sh**
