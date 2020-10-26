@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 1.5.8 [2020-10-26]
+**************************
+ADD: **setup_fp_env_hmc.sh**
+	- HMC version 3.1.3
+
 Version 1.5.7 [2020-08-13]
 **************************
 ADD: **setup_fp_env_python.sh**

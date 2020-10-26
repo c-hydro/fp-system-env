@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.5.7"
-script_date='2020/08/13'
+script_version="1.5.8"
+script_date='2020/10/26'
 
 # Define file reference path according with https link(s)
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh'
