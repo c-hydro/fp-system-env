@@ -2,6 +2,18 @@
 Changelog
 =========
 
+Version 1.5.9 [2021-01-08]
+**************************
+ADD: **setup_fp_env_python_generic.sh**
+	- Create the installer to use the conda environment for generic purposes;
+	- Update of miniconda version (Miniconda3-4.7.10).
+ADD: **setup_fp_env_python_hmc.sh**
+	- Create the installer to use the conda environment for the hmc package;
+	- Update of miniconda version (Miniconda3-4.7.10).
+ADD: **setup_fp_env_python_hyde.sh**
+	- Create the installer to use the conda environment for the hyde package;
+	- Update of miniconda version (Miniconda3-4.7.10).
+
 Version 1.5.8 [2020-10-26]
 **************************
 ADD: **setup_fp_env_hmc.sh**

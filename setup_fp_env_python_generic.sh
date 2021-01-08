@@ -2,17 +2,17 @@
 
 #-----------------------------------------------------------------------------------------
 # Script information
-script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
-script_version="1.5.8"
-script_date='2020/10/26'
+script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR GENERIC PACKAGE'
+script_version="1.5.9"
+script_date='2021/01/08'
 
 # Define file reference path according with https link(s)
-fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh'
+fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
 fp_folder_root_default=$HOME/fp_libs_python3
-fileref_env_default='library_env_python3'
-fp_env_libs_default='virtualenv_python3'
+fileref_env_default='library_env_python3_generic'
+fp_env_libs_default='virtualenv_python3_generic'
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip pygrib ftputil seaborn pytest GitPython python=3
+conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip ftputil seaborn pytest GitPython python=3
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
@@ -109,7 +109,7 @@ echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # Create environmental file
 echo " ====> CREATE ENVIRONMENTAL FILE ... "
 
-# Delete old version of environmetal file
+# Delete old version of environmental file
 cd $fp_folder_libs
 
 if [ -f $fp_file_env ] ; then
