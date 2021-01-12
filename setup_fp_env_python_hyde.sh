@@ -2,17 +2,21 @@
 
 #-----------------------------------------------------------------------------------------
 # Script information
-script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES'
+script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HYDE PACKAGE'
 script_version="1.5.3"
 script_date='2020/07/23'
 
 # Define file reference path according with https link(s)
-fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh'
+fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_folder_root_default=$HOME/fp_libs_python3
-fileref_env_default='library_env_python3'
-fp_env_libs_default='virtualenv_python3'
+#fp_folder_root_default=$HOME/fp_libs_python3
+#fileref_env_default='library_env_python3_hyde'
+#fp_env_libs_default='virtualenv_python3_hyde'
+
+fp_folder_root_default=$HOME/fp_virtualenv_python3_hyde
+fileref_env_default='virtualenv_python3_hyde_settings'
+fp_env_libs_default='virtualenv_python3_hyde_libraries'
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -90,7 +94,18 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip pygrib ftputil seaborn python=3
+
+echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
+conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pykdtree cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck dask pip seaborn pytest python=3
+echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+
+#echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
+#conda install -y -n $fp_env_libs -c conda-forge cdo ftputil pygrib pyresample pygeobase pybufr-ecmwf
+# conda install -y -c conda-forge rise
+# conda install -y -c conda-forge nbconvert
+#echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... DONE"
+
+echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
@@ -100,8 +115,8 @@ pip install repurpose
 pip install pynetcf
 pip install JPype1-py3
 pip install gldas
-# conda install -y -c conda-forge rise
-# conda install -y -c conda-forge nbconvert
+echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
+
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # ----------------------------------------------------------------------------------------
 
@@ -109,7 +124,7 @@ echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # Create environmental file
 echo " ====> CREATE ENVIRONMENTAL FILE ... "
 
-# Delete old version of environmetal file
+# Delete old version of environmental file
 cd $fp_folder_libs
 
 if [ -f $fp_file_env ] ; then
