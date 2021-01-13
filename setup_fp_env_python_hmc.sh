@@ -6,13 +6,13 @@ script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HMC PACKAGE'
 script_version="1.5.9"
 script_date='2021/01/08'
 
-# Define file reference path according with https link(s)
-fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh'
+# Define file reference path according with https link(s) --> https://repo.anaconda.com/miniconda/
+fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_folder_root_default=$HOME/fp_libs_python3
-fileref_env_default='library_env_python3_hmc'
-fp_env_libs_default='virtualenv_python3_hmc'
+fp_folder_root_default=$HOME/fp_virtualenv_python3_hmc
+fileref_env_default='fp_virtualenv_python3_hmc_settings'
+fp_env_libs_default='fp_virtualenv_python3_hmc_libraries'
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -90,11 +90,20 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 cython h5py proj4 xarray bottleneck pygeobase dask pip python=3
+
+echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
+conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3
+echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+
+echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
 source activate $fp_env_libs
 pip install h5netcdf
-# conda install -y -c conda-forge nbconvert
+echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
+
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
+
+#conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3
+# conda install -y -c conda-forge nbconvert
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------

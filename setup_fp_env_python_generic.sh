@@ -10,9 +10,9 @@ script_date='2021/01/08'
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_folder_root_default=$HOME/fp_libs_python3
-fileref_env_default='library_env_python3_generic'
-fp_env_libs_default='virtualenv_python3_generic'
+fp_folder_root_default=$HOME/fp_virtualenv_python3_generic
+fileref_env_default='fp_virtualenv_python3_generic_settings'
+fp_env_libs_default='fp_virtualenv_python3_generic_libraries'
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -90,7 +90,18 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
-conda create -y -n $fp_env_libs -c conda-forge numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pybufr-ecmwf pykdtree pygrib pyresample cdo cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck pygeobase dask pip ftputil seaborn pytest GitPython python=3
+
+echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... "
+conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pykdtree cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck dask pip seaborn pytest python=3
+echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+
+echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
+conda install -y -n $fp_env_libs -c conda-forge cdo ftputil pygrib pyresample pygeobase pybufr-ecmwf
+# conda install -y -c conda-forge rise
+# conda install -y -c conda-forge nbconvert
+echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... DONE"
+
+echo " =====> [3/3] PYTHON-PIP INSTALLATION ... "
 source activate $fp_env_libs
 pip install pygeogrids
 pip install h5netcdf
@@ -100,8 +111,8 @@ pip install repurpose
 pip install pynetcf
 pip install JPype1-py3
 pip install gldas
-# conda install -y -c conda-forge rise
-# conda install -y -c conda-forge nbconvert
+echo " =====> [3/3] PYTHON-PIP INSTALLATION ... DONE"
+
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # ----------------------------------------------------------------------------------------
 
