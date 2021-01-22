@@ -96,7 +96,7 @@ conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas
 echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 
 echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
-conda install -y -n $fp_env_libs -c conda-forge ftputil pygrib pyresample pygeobase pybufr-ecmwf
+conda install -y -n $fp_env_libs -c conda-forge ftputil pygrib pyresample pygeobase #pybufr-ecmwf
 # conda install -y -c conda-forge rise
 # conda install -y -c conda-forge nbconvert
 echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... DONE"
@@ -109,7 +109,7 @@ pip install ascat
 pip install pytesmo
 pip install repurpose
 pip install pynetcf
-pip install JPype1-py3
+#pip install JPype1-py3
 pip install gldas
 echo " =====> [3/3] PYTHON-PIP INSTALLATION ... DONE"
 

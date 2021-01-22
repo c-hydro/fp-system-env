@@ -13,6 +13,9 @@ ADD: **setup_fp_env_python_hmc.sh**
 ADD: **setup_fp_env_python_hyde.sh**
 	- Create the installer to use the conda environment for the hyde package;
 	- Update of miniconda version (Miniconda3-py37_4.8.2).
+ADD: **setup_fp_env_python_hat.sh**
+	- Create the installer to use the conda environment for the hat package;
+	- Update of miniconda version (Miniconda3-py37_4.8.2).
 
 Version 1.5.8 [2020-10-26]
 **************************
