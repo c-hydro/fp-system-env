@@ -14,8 +14,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.5.9"
-script_date='2021/01/08'
+script_version="1.6.0"
+script_date='2021/03/08'
 
 # Define file reference path according with https link(s)
 fileref_zlib='http://www.zlib.net/zlib-1.2.11.tar.gz'
@@ -158,6 +158,8 @@ export FC=gfortran
 export F77=gfortran
 export F90=gfortran
 export FFLAGS=-g
+#export FCFLAGS="-w -fallow-argument-mismatch -O2" # older fortran compilers
+#export FFLAGS="-w -fallow-argument-mismatch -O2" # older fortran compilers
 export CPPFLAGS=-DgFortran
 
 LDFLAGS="-L${fp_folder_hdf5}/lib -L${fp_folder_zlib}/lib" CPPFLAGS="-I${fp_folder_hdf5}/include -I${fp_folder_zlib}/include/" ./configure --enable-netcdf-4 --enable-dap --enable-shared --prefix=$fp_folder_nc4_c --disable-doxygen

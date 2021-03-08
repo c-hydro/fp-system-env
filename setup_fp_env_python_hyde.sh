@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HYDE PACKAGE'
-script_version="1.5.9"
-script_date='2021/01/08'
+script_version="1.6.0"
+script_date='2021/03/08'
 
 # Define file reference path according with https link(s)
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
