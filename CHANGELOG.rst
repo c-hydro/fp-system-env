@@ -2,6 +2,17 @@
 Changelog
 =========
 
+Version 1.6.1 [2021-04-02]
+**************************
+FIX: **setup_fp_env_python_generic.sh**
+	- Add the check for python environments previously installed;
+FIX: **setup_fp_env_python_hmc.sh**
+	- Add the check for python environments previously installed;
+FIX: **setup_fp_env_python_hyde.sh**
+	- Add the check for python environments previously installed;
+FIX: **setup_fp_env_python_hat.sh**
+	- Add the check for python environments previously installed;
+
 Version 1.6.0 [2021-03-08]
 **************************
 ADD: **setup_fp_env_hmc.sh**

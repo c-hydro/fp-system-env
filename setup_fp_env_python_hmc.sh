@@ -3,14 +3,14 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HMC PACKAGE'
-script_version="1.6.0"
-script_date='2021/03/08'
+script_version="1.6.1"
+script_date='2021/04/02'
 
 # Define file reference path according with https link(s) --> https://repo.anaconda.com/miniconda/
 fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_folder_root_default=$HOME/fp_virtualenv_python3_hmc
+fp_folder_root_default=$HOME/fp_virtualenv_python3
 fileref_env_default='fp_virtualenv_python3_hmc_settings'
 fp_env_libs_default='fp_virtualenv_python3_hmc_libraries'
 #-----------------------------------------------------------------------------------------
@@ -68,23 +68,39 @@ fp_file_env=$fp_folder_libs/$fileref_env
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
-# Download library source codes
-echo " ====> GET LIBRARY FILES ... "
-wget $fileref_miniconda -O miniconda.sh
-echo " ====> GET LIBRARY FILES ... DONE!"
-# ----------------------------------------------------------------------------------------
-
-# ----------------------------------------------------------------------------------------
 # Install python environmente using miniconda
-echo " ====> INSTALL PYTHON ENVIRONMENT ... "
-
-if [ -d "$fp_folder_libs" ]; then 
-	rm -Rf $fp_folder_libs; 
+echo " ====> CHECK PYTHON ENVIRONMENT ... "
+if export PATH="$fp_folder_libs/bin:$PATH" > /dev/null 2>&1 ; then
+	if source activate $fp_env_libs > /dev/null 2>&1 ; then
+		echo " ====> CHECK PYTHON ENVIRONMENT ... FOUND."
+    	fp_env_install=false
+    else
+   	 	echo " ====> CHECK PYTHON ENVIRONMENT ... FOUND ENVIRONMENT BUT LIBRARIES ARE NOT FOUND."
+    	fp_env_install=false
+    fi
+else
+	echo " ====> CHECK PYTHON ENVIRONMENT ... NOT FOUND."
+	fp_env_install=true
 fi
 
-bash miniconda.sh -b -p $fp_folder_libs
-export PATH="$fp_folder_libs/bin:$PATH"
-echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
+echo " ====> INSTALL PYTHON ENVIRONMENT ... "
+if $fp_env_install; then
+	# Download library source codes
+	echo " =====> GET LIBRARY FILES ... "
+	wget $fileref_miniconda -O miniconda.sh
+	echo " =====> GET LIBRARY FILES ... DONE!"
+
+	if [ -d "$fp_folder_libs" ]; then 
+		rm -Rf $fp_folder_libs; 
+	fi
+
+	bash miniconda.sh -b -p $fp_folder_libs
+	export PATH="$fp_folder_libs/bin:$PATH"
+	echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
+	
+else
+	echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE. PREVIOSLY INSTALLED"
+fi
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
