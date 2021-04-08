@@ -4,15 +4,25 @@
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR GENERIC PACKAGE'
 script_version="1.6.1"
-script_date='2021/04/02'
+script_date='2021/04/07'
 
 # Define file reference path according with https link(s)
-fileref_miniconda='https://repo.continuum.io/miniconda/Miniconda3-4.7.10-Linux-x86_64.sh'
+fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_folder_root_default=$HOME/fp_virtualenv_python3
-fileref_env_default='fp_virtualenv_python3_generic_settings'
-fp_env_libs_default='fp_virtualenv_python3_generic_libraries'
+fp_env_folder_root_default=$HOME/fp_virtualenv_python3
+fp_env_file_reference_default='fp_virtualenv_python3_generic_settings'
+fp_env_folder_libraries_default='fp_virtualenv_python3_generic_libraries'
+
+fp_env_file_requirements_default='requirements_fp_env_python_generic.yaml'
+
+# Examples of generic command-line:
+# conda create --yes --name $fp_env_folder_libraries numpy scipy pip python=3
+# conda create --yes --nama $fp_env_folder_libraries -c conda-forge pyresample pygeobase
+# conda install --yes -c conda-forge nbconvert
+# conda env export | grep -v "^prefix: " > requirements_fp_env_python.yaml
+# conda env create --file $fp_env_file_requirements # create virtual env using yaml file
+# conda create -y --name $fp_env_folder_libraries --file $fp_env_file_requirements # create virtual env using ascii file
 #-----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------
@@ -32,46 +42,57 @@ echo ""
 echo " ==> Script arguments 1 - Directory of libraries [string: path]-> $1"
 echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
 echo " ==> Script arguments 3 - Name of virtual environment [string: name] -> $3"
+echo " ==> Script arguments 4 - Filename of system requirements in yaml format [string: name] -> $4"
 echo ""
 
 # Get folder root path
 if [ $# -eq 0 ]; then
-    fp_folder_root=$fp_folder_root_default		
-	fileref_env=$fileref_env_default
-	fp_env_libs=$fp_env_libs_default
+    fp_env_folder_root=$fp_env_folder_root_default		
+	fp_env_file_reference=$fp_env_file_reference_default
+	fp_env_folder_libraries=$fp_env_folder_libraries_default
+	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 1 ]; then
-	fp_folder_root=$1	
-	fileref_env=$fileref_env_default
-	fp_env_libs=$fp_env_libs_default
+	fp_env_folder_root=$1	
+	fp_env_file_reference=$fp_env_file_reference_default
+	fp_env_folder_libraries=$fp_env_folder_libraries_default
+	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 2 ]; then
-	fp_folder_root=$1
-	fileref_env=$2
-	fp_env_libs=$fp_env_libs_default
+	fp_env_folder_root=$1
+	fp_env_file_reference=$2
+	fp_env_folder_libraries=$fp_env_folder_libraries_default
+	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 3 ]; then
-	fp_folder_root=$1
-	fileref_env=$2
-	fp_env_libs=$3
+	fp_env_folder_root=$1
+	fp_env_file_reference=$2
+	fp_env_folder_libraries=$3
+	fp_env_file_requirements=$fp_env_file_requirements_default
+elif [ $# -eq 4 ]; then
+	fp_env_folder_root=$1
+	fp_env_file_reference=$2
+	fp_env_folder_libraries=$3
+	fp_env_file_requirements=$4
 fi
 
 # Create root folder
-if [ ! -d "$fp_folder_root" ]; then
-	mkdir -p $fp_folder_root
+if [ ! -d "$fp_env_folder_root" ]; then
+	mkdir -p $fp_env_folder_root
 fi
 
 # Define folder path(s)
-fp_folder_libs=$fp_folder_root
+fp_env_folder_root=$fp_env_folder_root
 
 # Define environment filename
-fp_file_env=$fp_folder_libs/$fileref_env
+fp_env_path_reference=$fp_env_folder_root/$fp_env_file_reference
 
 # multilines comment: if [ 1 -eq 0 ]; then ... fi
 #-----------------------------------------------------------------------------------------
 
- ----------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Install python environmente using miniconda
 echo " ====> CHECK PYTHON ENVIRONMENT ... "
-if export PATH="$fp_folder_libs/bin:$PATH" > /dev/null 2>&1 ; then
-	if source activate $fp_env_libs > /dev/null 2>&1 ; then
+if [ -d "$fp_env_folder_root/bin/" ] > /dev/null 2>&1 ; then
+	export PATH="$fp_env_folder_root/bin:$PATH"
+	if source activate $fp_env_folder_root > /dev/null 2>&1 ; then
 		echo " ====> CHECK PYTHON ENVIRONMENT ... FOUND."
     	fp_env_install=false
     else
@@ -87,15 +108,15 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... "
 if $fp_env_install; then
 	# Download library source codes
 	echo " =====> GET LIBRARY FILES ... "
-	wget $fileref_miniconda -O miniconda.sh
+	wget $fp_env_file_miniconda -O miniconda.sh
 	echo " =====> GET LIBRARY FILES ... DONE!"
 
-	if [ -d "$fp_folder_libs" ]; then 
-		rm -Rf $fp_folder_libs; 
+	if [ -d "$fp_env_folder_root" ]; then 
+		rm -Rf $fp_env_folder_root; 
 	fi
 
-	bash miniconda.sh -b -p $fp_folder_libs
-	export PATH="$fp_folder_libs/bin:$PATH"
+	bash miniconda.sh -b -p $fp_env_folder_root
+	
 	echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 	
 else
@@ -106,28 +127,35 @@ fi
 # ----------------------------------------------------------------------------------------
 # Install python libraries
 echo " ====> INSTALL PYTHON LIBRARIES ... "
+export PATH="$fp_env_folder_root/bin:$PATH"
 
-echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pykdtree cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck dask pip seaborn pytest python=3
-echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+if [ -f $fp_env_file_requirements ] ; then
+	echo " =====> USE OF CONDA REQUIREMENTS FILE YAML: $fp_env_file_requirements"
+	# source activate $fp_env_folder_libraries
+    # conda create -y --name $fp_env_folder_libraries --file $fp_env_file_requirements
+    conda env create --file $fp_env_file_requirements
+   
+else
 
-echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
-conda install -y -n $fp_env_libs -c conda-forge cdo ftputil pygrib pyresample pygeobase pybufr-ecmwf
-# conda install -y -c conda-forge rise
-# conda install -y -c conda-forge nbconvert
-echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... DONE"
+	echo " =====> USE OF CONDA GENERIC COMMAND-LINE"
+	
+	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
+	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	
+	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
+	source activate $fp_env_folder_libraries
+	pip install pygeogrids
+	pip install h5netcdf
+	pip install ascat
+	pip install pytesmo
+	pip install repurpose
+	pip install pynetcf
+	# pip install JPype1-py3
+	pip install gldas
+	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
 
-echo " =====> [3/3] PYTHON-PIP INSTALLATION ... "
-source activate $fp_env_libs
-pip install pygeogrids
-pip install h5netcdf
-pip install ascat
-pip install pytesmo
-pip install repurpose
-pip install pynetcf
-pip install JPype1-py3
-pip install gldas
-echo " =====> [3/3] PYTHON-PIP INSTALLATION ... DONE"
+fi
 
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 # ----------------------------------------------------------------------------------------
@@ -137,22 +165,20 @@ echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
 echo " ====> CREATE ENVIRONMENTAL FILE ... "
 
 # Delete old version of environmental file
-cd $fp_folder_libs
+cd $fp_env_folder_root
 
-if [ -f $fp_file_env ] ; then
-    rm $fp_file_env
+if [ -f $fp_env_file_reference ] ; then
+    rm $fp_env_file_reference
 fi
 
 # Export BINARY PATH(S)
-echo "PATH=$fp_folder_libs/bin:"'$PATH'"" >> $fp_file_env
-echo "export PATH" >> $fp_file_env
+echo "PATH=$fp_env_folder_root/bin:"'$PATH'"" >> $fp_env_file_reference
+echo "export PATH" >> $fp_env_file_reference
 
 # Export VENV ACTIVATION
-echo "source activate $fp_env_libs" >> $fp_file_env
+echo "source activate $fp_env_folder_libraries" >> $fp_env_file_reference
 
 echo " ====> CREATE ENVIRONMENTAL FILE ... DONE!"
-# ----------------------------------------------------------------------------------------
-
 # ----------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------

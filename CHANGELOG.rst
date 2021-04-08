@@ -2,16 +2,20 @@
 Changelog
 =========
 
-Version 1.6.1 [2021-04-02]
+Version 1.6.1 [2021-04-07]
 **************************
 FIX: **setup_fp_env_python_generic.sh**
 	- Add the check for python environments previously installed;
+	- Add the requirements file in yaml format as option to install the virtual environment.
 FIX: **setup_fp_env_python_hmc.sh**
 	- Add the check for python environments previously installed;
+	- Add the requirements file in yaml format as option to install the virtual environment.
 FIX: **setup_fp_env_python_hyde.sh**
 	- Add the check for python environments previously installed;
+	- Add the requirements file in yaml format as option to install the virtual environment.
 FIX: **setup_fp_env_python_hat.sh**
 	- Add the check for python environments previously installed;
+	- Add the requirements file in yaml format as option to install the virtual environment.
 
 Version 1.6.0 [2021-03-08]
 **************************
