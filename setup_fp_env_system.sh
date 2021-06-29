@@ -14,8 +14,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - SYSTEM LIBRARIES'
-script_version="1.6.1"
-script_date='2021/04/02'
+script_version="1.6.2"
+script_date='2021/06/28'
 
 # Define file reference path according with https link(s)
 fileref_zlib='http://www.zlib.net/zlib-1.2.11.tar.gz'

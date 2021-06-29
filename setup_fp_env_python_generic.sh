@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------------------------
 # Script information
 script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR GENERIC PACKAGE'
-script_version="1.6.1"
-script_date='2021/04/07'
+script_version="1.6.2"
+script_date='2021/06/28'
 
 # Define file reference path according with https link(s)
 fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
