@@ -142,7 +142,7 @@ else
 	echo " =====> [1/2] CONDA INSTALLATION ... "
 	
 	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... "
-	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask seaborn pip python=3.7
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray=0.18.0 bottleneck dask seaborn pip python=3.7
 	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 	
 	echo " ======> CONDA-FORGE CHANNEL INSTALLATION ... "
