@@ -96,7 +96,7 @@ echo " ====> INSTALL PYTHON ENVIRONMENT ... DONE!"
 echo " ====> INSTALL PYTHON LIBRARIES ... "
 
 echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pykdtree cartopy basemap basemap-data-hires proj4 progressbar2 xarray bottleneck dask pip seaborn pytest python=3
+conda create -y -n $fp_env_libs numpy scipy pandas matplotlib rasterio geopandas netCDF4 pyflakes statsmodels cython h5py jupyter pykdtree cartopy basemap basemap-data-hires proj4 progressbar2 xarray=0.18.0 bottleneck dask pip seaborn pytest python=3
 echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 
 #echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
