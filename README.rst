@@ -47,7 +47,7 @@ Python3 libraries
 -----------------
 
 The python3 standard library is not sufficient to correctly install all Flood-PROOFS applications; for this reason some extra libraries are needed to guarantee all functionalities. 
-To install all python3 libraries a bash script named **setup_fp_env_python.sh** is provided [6_]; basically, the script calls a **miniconda** [7_] installation that allow to get all needed libraries and install them into “$HOME/user/fp_libs_python/” folder. During the installation, a virtual environment named “fp_env_python” is created too.
+To install all python3 libraries a bash script named **setup_fp_system_conda_python_[package].sh** is provided [6_]; basically, the script calls a **miniconda** [7_] installation that allow to get all needed libraries and install them into “$HOME/user/fp_libs_python/” folder. During the installation, a virtual environment named “fp_env_python” is created too.
 Once all libraries are correctly installed and configurated, to activate “fp_env_python” by command-line is necessary to execute the following:
 
 .. code-block:: bash
@@ -55,7 +55,7 @@ Once all libraries are correctly installed and configurated, to activate “fp_e
    >> export PATH="$HOME/fp_libs_python/bin:$PATH"
    >> source activate fp_env_python
 
-By default, the **fp_env_python** environment is shown in parentheses () or brackets [] at the beginning of your command prompt:
+By default, the **fp_system_conda_python3_[package]_settings** environment is shown in parentheses () or brackets [] at the beginning of your command prompt:
 
 .. code-block:: bash
 

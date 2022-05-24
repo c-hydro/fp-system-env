@@ -2,19 +2,19 @@
 
 #-----------------------------------------------------------------------------------------
 # Script information
-script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR GENERIC PACKAGE'
-script_version="1.6.2"
-script_date='2021/06/28'
+script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HYDE PACKAGE - CONDA'
+script_version="1.6.3"
+script_date='2022/05/23'
 
-# Define file reference path according with https link(s)
+# Define file reference path according with https link(s) --> https://repo.anaconda.com/miniconda/
 fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_env_folder_root_default=$HOME/fp_virtualenv_python3
-fp_env_file_reference_default='fp_virtualenv_python3_generic_settings'
-fp_env_folder_libraries_default='fp_virtualenv_python3_generic_libraries'
+fp_env_folder_root_default=$HOME/fp_system_conda
+fp_env_file_reference_default='fp_system_conda_python3_hyde_settings'
+fp_env_folder_libraries_default='fp_system_conda_python3_hyde_libraries'
 
-fp_env_file_requirements_default='requirements_fp_env_python_generic.yaml'
+fp_env_file_requirements_default='requirements_fp_system_conda_python3_hyde.yaml'
 
 # Examples of generic command-line:
 # conda create --yes --name $fp_env_folder_libraries numpy scipy pip python=3
@@ -139,9 +139,17 @@ else
 
 	echo " =====> USE OF CONDA GENERIC COMMAND-LINE"
 	
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	echo " =====> [1/2] CONDA INSTALLATION ... "
+	
+	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... "
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray=0.18.0 bottleneck dask seaborn pip python=3.7
+	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	
+	echo " ======> CONDA-FORGE CHANNEL INSTALLATION ... "
+	conda install --yes --name $fp_env_folder_libraries -c conda-forge ftputil #  pygrib pybufr-ecmwf pybufr-ecmwf
+	echo " ======> CONDA-FORGE CHANNEL INSTALLATION ... DONE"
+	
+	echo " =====> [1/2] CONDA INSTALLATION ... DONE"
 	
 	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
 	source activate $fp_env_folder_libraries
@@ -151,7 +159,10 @@ else
 	pip install pytesmo
 	pip install repurpose
 	pip install pynetcf
-	# pip install JPype1-py3
+	pip install pyresample
+	pip install pygeobase
+	pip install pygrib
+	#pip install JPype1-py3
 	pip install gldas
 	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
 
