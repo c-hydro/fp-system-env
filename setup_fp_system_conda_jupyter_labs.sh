@@ -2,19 +2,19 @@
 
 #-----------------------------------------------------------------------------------------
 # Script information
-script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR HMC PACKAGE - CONDA'
-script_version="1.6.3"
-script_date='2022/05/23'
+script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR JUPYTER LABS - CONDA'
+script_version="1.6.4"
+script_date='2022/09/26'
 
 # Define file reference path according with https link(s) --> https://repo.anaconda.com/miniconda/
 fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_env_folder_root_default=$HOME/fp_system_env_conda
-fp_env_file_reference_default='fp_system_conda_python3_hmc_settings'
-fp_env_folder_libraries_default='fp_system_conda_python3_hmc_libraries'
+fp_env_folder_root_default=$HOME/fp_system_conda
+fp_env_file_reference_default='fp_system_conda_jupyter_labs_settings'
+fp_env_folder_libraries_default='fp_system_conda_jupyter_labs_libraries'
 
-fp_env_file_requirements_default='requirements_fp_system_conda_python3_hmc.yaml'
+fp_env_file_requirements_default='requirements_fp_system_conda_jupyter_labs.yaml'
 
 # Examples of generic command-line:
 # conda create --yes --name $fp_env_folder_libraries numpy scipy pip python=3
@@ -140,7 +140,7 @@ else
 	echo " =====> USE OF CONDA GENERIC COMMAND-LINE"
 	
 	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 pysheds=0.2.7 importlib_metadata rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
 	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 	
 	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "

@@ -1,4 +1,4 @@
-name: fp_virtualenv_python3_generic_libraries
+name: fp_system_conda_python3_generic_libraries
 channels:
   - defaults
   - conda-forge
