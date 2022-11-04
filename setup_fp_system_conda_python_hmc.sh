@@ -13,8 +13,7 @@ fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2
 fp_env_folder_root_default=$HOME/fp_system_env_conda
 fp_env_file_reference_default='fp_system_conda_python3_hmc_settings'
 fp_env_folder_libraries_default='fp_system_conda_python3_hmc_libraries'
-
-fp_env_file_requirements_default='requirements_fp_system_conda_python3_hmc.yaml'
+fp_env_file_requirements_default='requirements_fp_system_conda_python_hmc.yaml'
 
 # Examples of generic command-line:
 # conda create --yes --name $fp_env_folder_libraries numpy scipy pip python=3
@@ -139,14 +138,19 @@ else
 
 	echo " =====> USE OF CONDA GENERIC COMMAND-LINE"
 	
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 pysheds=0.2.7 importlib_metadata rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... "
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
+	echo " =====> [1/3] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 	
-	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
+	echo " =====> [2/3] CONDA-FORGE CHANNEL INSTALLATION ... "
+	conda install -y --name $fp_env_folder_libraries -c conda-forge importlib_metadata
+	conda install -y --name $fp_env_folder_libraries -c conda-forge pysheds=0.2.7
+	echo " =====> [2/3] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	
+	echo " =====> [3/3] PYTHON-PIP INSTALLATION ... "
 	source activate $fp_env_folder_libraries
 	pip install h5netcdf
-	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
+	echo " =====> [3/3] PYTHON-PIP INSTALLATION ... DONE"
 
 fi
 
