@@ -2,14 +2,14 @@
 Changelog
 =========
 
-Version 1.6.3 [2022-11-04]
+Version 1.6.3 [2022-11-22]
 **************************
 APP: **setup_fp_system_venv_python_generic.sh**
     - Script refactor for generic venv python package 
     
-APP: **setup_fp_system_conda_python_generic.sh**
-    - Script refactor for generic conda python package 
-    . Add importlib_metadata, pysheds libraries
+APP: **setup_fp_system_conda_python_basic.sh**
+    - Script refactor for basic conda python package with the environment tag
+      dynamic definition
 
 APP: **setup_fp_system_conda_python_hyde.sh**
     - Script refactor for hyde conda python package 

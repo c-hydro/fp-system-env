@@ -2,19 +2,21 @@
 
 #-----------------------------------------------------------------------------------------
 # Script information
-script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR GENERIC PACKAGE - CONDA'
+script_name='FP ENVIRONMENT - PYTHON3 LIBRARIES FOR BASIC PACKAGE - CONDA'
 script_version="1.6.3"
-script_date='2022/05/23'
+script_date='2022/11/22'
 
-# Define file reference path according with https link(s)
+# Define file reference path according with https link(s) --> https://repo.anaconda.com/miniconda/
 fp_env_file_miniconda='https://repo.continuum.io/miniconda/Miniconda3-py37_4.8.2-Linux-x86_64.sh'
 
 # Argument(s) default definition(s)
-fp_env_folder_root_default=$HOME/fp_system_conda
-fp_env_file_reference_default='fp_system_conda_python3_generic_settings'
-fp_env_folder_libraries_default='fp_system_conda_python3_generic_libraries'
+fp_env_tag_default='basic'
 
-fp_env_file_requirements_default='requirements_fp_system_conda_python3_generic.yaml'
+fp_env_folder_root_default=$HOME/fp_system_conda
+fp_env_file_reference_default='fp_system_conda_python3_%ENV_TAG_settings'
+fp_env_folder_libraries_default='fp_system_conda_python3_%ENV_TAG_libraries'
+
+fp_env_file_requirements_default='requirements_fp_system_conda_python3_%ENV_TAG.yaml'
 
 # Examples of generic command-line:
 # conda create --yes --name $fp_env_folder_libraries numpy scipy pip python=3
@@ -39,39 +41,70 @@ echo ""
 echo " ==> Script arguments number: $script_args_n"
 echo " ==> Script arguments values: $script_args_values"
 echo ""
-echo " ==> Script arguments 1 - Directory of libraries [string: path]-> $1"
-echo " ==> Script arguments 2 - Filename of system environment [string: filename] -> $2"
-echo " ==> Script arguments 3 - Name of virtual environment [string: name] -> $3"
-echo " ==> Script arguments 4 - Filename of system requirements in yaml format [string: name] -> $4"
+echo " ==> ARGS DEFINED:"
+echo ""
+echo " ==> Script arguments 1 - Tag of virtual environmenf [string: path]-> $1"
+echo " ==> Script arguments 2 - Directory of libraries [string: path]-> $2"
+echo " ==> Script arguments 3 - Filename of system environment [string: filename] -> $3"
+echo " ==> Script arguments 4 - Name of virtual environment [string: name] -> $4"
+echo " ==> Script arguments 5 - Filename of system requirements in yaml format [string: name] -> $5"
 echo ""
 
 # Get folder root path
 if [ $# -eq 0 ]; then
+
+	fp_env_tag=$fp_env_tag_default	
     fp_env_folder_root=$fp_env_folder_root_default		
 	fp_env_file_reference=$fp_env_file_reference_default
 	fp_env_folder_libraries=$fp_env_folder_libraries_default
 	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 1 ]; then
-	fp_env_folder_root=$1	
+	fp_env_tag=$1
+	fp_env_folder_root=$fp_env_folder_root_default
 	fp_env_file_reference=$fp_env_file_reference_default
 	fp_env_folder_libraries=$fp_env_folder_libraries_default
 	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 2 ]; then
-	fp_env_folder_root=$1
-	fp_env_file_reference=$2
+	fp_env_tag=$1
+	fp_env_folder_root=$2
+	fp_env_file_reference=$fp_env_file_reference_default
 	fp_env_folder_libraries=$fp_env_folder_libraries_default
 	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 3 ]; then
-	fp_env_folder_root=$1
-	fp_env_file_reference=$2
-	fp_env_folder_libraries=$3
+	fp_env_tag=$1
+	fp_env_folder_root=$2
+	fp_env_file_reference=$3
+	fp_env_folder_libraries=$fp_env_folder_libraries_default
 	fp_env_file_requirements=$fp_env_file_requirements_default
 elif [ $# -eq 4 ]; then
-	fp_env_folder_root=$1
-	fp_env_file_reference=$2
-	fp_env_folder_libraries=$3
-	fp_env_file_requirements=$4
+	fp_env_tag=$1
+	fp_env_folder_root=$2
+	fp_env_file_reference=$3
+	fp_env_folder_libraries=$4
+	fp_env_file_requirements=$fp_env_file_requirements_default
+elif [ $# -eq 5 ]; then
+	fp_env_tag=$1
+	fp_env_folder_root=$2
+	fp_env_file_reference=$3
+	fp_env_folder_libraries=$4
+	fp_env_file_requirements=$5
 fi
+
+# Set the 
+fp_env_folder_root=${fp_env_folder_root/'%ENV_TAG'/$fp_env_tag}
+fp_env_file_reference=${fp_env_file_reference/'%ENV_TAG'/$fp_env_tag}
+fp_env_folder_libraries=${fp_env_folder_libraries/'%ENV_TAG'/$fp_env_tag}
+fp_env_file_requirements=${fp_env_file_requirements/'%ENV_TAG'/$fp_env_tag}
+
+echo ""
+echo " ==> ARGS SELECTED:"
+echo ""
+echo " ==> Script arguments 1 - Tag of virtual environmenf [string: path]-> ${fp_env_tag}"
+echo " ==> Script arguments 2 - Directory of libraries [string: path]-> ${fp_env_folder_root}"
+echo " ==> Script arguments 3 - Filename of system environment [string: filename] -> ${fp_env_file_reference}"
+echo " ==> Script arguments 4 - Name of virtual environment [string: name] -> ${fp_env_folder_libraries}"
+echo " ==> Script arguments 5 - Filename of system requirements in yaml format [string: name] -> ${fp_env_file_requirements}"
+echo ""
 
 # Create root folder
 if [ ! -d "$fp_env_folder_root" ]; then
@@ -139,22 +172,15 @@ else
 
 	echo " =====> USE OF CONDA GENERIC COMMAND-LINE"
 	
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... "
-	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython h5py proj4 xarray bottleneck dask pip python=3.7
-	echo " =====> [1/2] CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
+	echo " =====> CONDA INSTALLATION ... "
 	
-	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... "
-	source activate $fp_env_folder_libraries
-	pip install pygeogrids
-	pip install h5netcdf
-	pip install ascat
-	pip install pytesmo
-	pip install repurpose
-	pip install pynetcf
-	# pip install JPype1-py3
-	pip install gldas
-	echo " =====> [2/2] PYTHON-PIP INSTALLATION ... DONE"
+	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... "
+	conda create --yes --name $fp_env_folder_libraries numpy scipy pandas matplotlib=3.1.3 rasterio geopandas cartopy=0.17 netCDF4 cython xarray=0.18.0 bottleneck dask pip python=3.7
+	echo " ======> CONDA-DEFAULT CHANNEL INSTALLATION ... DONE"
 
+
+	echo " =====> CONDA INSTALLATION ... DONE"
+	
 fi
 
 echo " ====> INSTALL PYTHON LIBRARIES ... DONE!"
