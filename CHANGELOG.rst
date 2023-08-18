@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 1.6.4 [2023-08-18]
+**************************
+FIX: **generic upgradw**
+    - Remove useless large file(s) 
+
 Version 1.6.3 [2022-11-22]
 **************************
 APP: **setup_fp_system_venv_python_generic.sh**
