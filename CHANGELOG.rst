@@ -2,6 +2,11 @@
 Changelog
 =========
 
+Version 1.6.5 [2023-10-31]
+**************************
+APP: **setup_fp_system_conda_python_door.sh**
+    - Script refactor for door conda python package 
+    
 Version 1.6.4 [2023-08-18]
 **************************
 FIX: **generic upgradw**
